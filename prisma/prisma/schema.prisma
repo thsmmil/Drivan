@@ -9,3 +9,99 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Passageiro {
+  CPF          String               @id
+  Email        String               @unique
+  Nome         String
+  Telefone     String
+  CriadoEm     DateTime             @default(now())
+  AtualizadoEm DateTime
+  RemovidoEm   DateTime
+  viagens      PassageiroOnViagem[]
+
+}
+
+model Carro {
+  Id          Int       @id @default(autoincrement())
+  Modelo      String
+  Marca       String
+  Ano         Int
+  Cor         String
+  mostorista  Motorista @relation(fields: [motoristaId], references: [CPF])
+  motoristaId String
+
+
+}
+
+model Motorista {
+  CPF          String              @id
+  Email        String              @unique
+  Nome         String
+  Telefone     String
+  carro        Carro[]
+  CriadoEm     DateTime            @default(now())
+  AtualizadoEm DateTime
+  RemovidoEm   DateTime
+  viagens      MotoristaOnViagem[]
+}
+
+model Viagem {
+  Id          Int                  @id @default(autoincrement())
+  HoraSaida   DateTime
+  Valor       Decimal
+  DataIda     DateTime
+  passageiros PassageiroOnViagem[]
+  motoristas  MotoristaOnViagem[]
+
+}
+
+model PassageiroOnViagem {
+  passageiro   Passageiro @relation(fields: [passageiroId], references: [CPF])
+  passageiroId String
+  viagem       Viagem     @relation(fields: [viagemId], references: [Id])
+  viagemId     Int
+  reservadoEm  DateTime   @default(now())
+  IsConcluido  DateTime
+  concluidoEm  DateTime
+  avaliacao    Int
+
+  @@id([passageiroId, viagemId])
+}
+
+model MotoristaOnViagem {
+  motorista   Motorista @relation(fields: [motoristaId], references: [CPF])
+  motoristaId String
+  viagem      Viagem    @relation(fields: [viagemId], references: [Id])
+  viagemId    Int
+  reservadoEm DateTime  @default(now())
+  IsConcluido DateTime
+  concluidoEm DateTime
+  avaliacao   Int
+
+  @@id([motoristaId, viagemId])
+}
+
+model Estado {
+  Id      Int      @id @default(autoincrement())
+  Nome    String
+  cidades Cidade[]
+
+}
+
+model Cidade {
+  Id        Int        @id @default(autoincrement())
+  Nome      String
+  estado    Estado     @relation(fields: [estadoId], references: [Id])
+  estadoId  Int
+  enderecos Endereco[]
+}
+
+model Endereco {
+  Id              Int    @id @default(autoincrement())
+  Logradouro      String
+  PontoReferencia String
+  cidade          Cidade @relation(fields: [cidadeId], references: [Id])
+  cidadeId        Int
+  numero          Int?
+}

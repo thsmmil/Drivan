@@ -1,10 +1,11 @@
-import express from 'express'
-const app = express()
+import express from 'express';
 
-app.use(express.json())
+import { router } from './routes';
 
-app.get('/', (req, res) =>{
-    return res.json({hello: "world"});
-})
+const app = express();
 
-app.listen(3030, console.log('Server listening on port 3030'))
+app.use(express.json());
+app.use(router);
+
+
+app.listen(3030, console.log('Server listening on port 3030'));
