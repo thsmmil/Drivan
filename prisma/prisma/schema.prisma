@@ -16,8 +16,8 @@ model Passageiro {
   Nome         String
   Telefone     String
   CriadoEm     DateTime             @default(now())
-  AtualizadoEm DateTime
-  RemovidoEm   DateTime
+  AtualizadoEm DateTime?             
+  RemovidoEm   DateTime?
   viagens      PassageiroOnViagem[]
 
 }
@@ -41,8 +41,8 @@ model Motorista {
   Telefone     String
   carro        Carro[]
   CriadoEm     DateTime            @default(now())
-  AtualizadoEm DateTime
-  RemovidoEm   DateTime
+  AtualizadoEm DateTime?
+  RemovidoEm   DateTime?
   viagens      MotoristaOnViagem[]
 }
 
@@ -62,9 +62,10 @@ model PassageiroOnViagem {
   viagem       Viagem     @relation(fields: [viagemId], references: [Id])
   viagemId     Int
   reservadoEm  DateTime   @default(now())
-  IsConcluido  DateTime
-  concluidoEm  DateTime
-  avaliacao    Int
+  IsConcluido  Boolean
+  iniciadoEm   DateTime?
+  concluidoEm  DateTime?
+  avaliacao    Float?
 
   @@id([passageiroId, viagemId])
 }
@@ -75,9 +76,10 @@ model MotoristaOnViagem {
   viagem      Viagem    @relation(fields: [viagemId], references: [Id])
   viagemId    Int
   reservadoEm DateTime  @default(now())
-  IsConcluido DateTime
-  concluidoEm DateTime
-  avaliacao   Int
+  IsConcluido Boolean
+  iniciadoEm   DateTime?
+  concluidoEm DateTime?
+  avaliacao   Float?
 
   @@id([motoristaId, viagemId])
 }

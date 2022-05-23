@@ -1,70 +1,26 @@
 import { Router } from 'express';
 
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient()
+import PassageiroController from './controllers/PassageiroController';
+import MotoristaController from './controllers/MotoristaController';
+import CarroController from './controllers/CarroController';
 
 const router = Router();
-router.post("/passageiro", async (req, res) => {
-    try {
-        const { CPF, Nome, Email, Telefone } = req.body
+router.post("/passageiro", PassageiroController.createPassenger);
+router.get("/passageiros", PassageiroController.findAllPassenger);
+router.get("/passageiro/:id", PassageiroController.findPassenger);
+router.put("/passageiro/:id", PassageiroController.updatePassenger);
+router.delete("/passageiro/:id", PassageiroController.deletePassenger);
 
-        const user = await prisma.passageiro.create({
-            data: {
-                CPF,
-                Nome,
-                Email,
-                Telefone,
-            },
-        });
-        return res.json(user);
-    } catch (error) {
+router.post("/motorista", MotoristaController.createDriver);
+router.get("/motoristas", MotoristaController.findAllDriver);
+router.get("/motorista/:id", MotoristaController.findDriver);
+router.put("/motorista/:id", MotoristaController.updateDriver);
+router.delete("/motorista/:id", MotoristaController.deleteDriver);
 
-    }
-
-
-});
-
-router.post("/motorista", async (req, res) => {
-    try {
-        const { CPF, Nome, Email, Telefone } = req.body
-
-        const user = await prisma.motorista.create({
-            data: {
-                CPF,
-                Nome,
-                Email,
-                Telefone,
-            },
-        });
-        return res.json(user);
-    } catch (error) {
-
-    }
-
-
-});
-
-router.post("/carro", async (req, res) => {
-    try {
-        const { Modelo, Marca, Ano, Cor } = req.body
-
-        const car = await prisma.carro.create({
-            data: {
-                Modelo,
-                Marca,
-                Ano,
-                Cor
-            },
-        });
-        return res.json(car);
-    } catch (error) {
-
-    }
-
-
-});
-
-
+router.post("/carro", CarroController.createCar);
+router.get("/carros", CarroController.findAllCar);
+router.get("/carro/:id", CarroController.findCar);
+router.put("/carro/:id", CarroController.updateCar);
+router.delete("/carro/:id", CarroController.deleteCar);
 
 export { router }
