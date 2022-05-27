@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export default {
     async createPassenger(req, res) {
         try {
-            const { CPF, Nome, Email, Telefone } = req.body;
+            const { CPF, Nome, Email, Telefone, Senha } = req.body;
             let user = await prisma.passageiro.findUnique({
                 where: {
                     Email
@@ -19,6 +19,7 @@ export default {
                     CPF,
                     Nome,
                     Email,
+                    Senha,
                     Telefone
                 },
             });
@@ -46,7 +47,7 @@ export default {
     },
     async updatePassenger(req, res) {
         const { id } = req.params;
-        const { Nome, Email, Telefone } = req.body;
+        const { Nome, Email, Telefone, Senha } = req.body;
 
         try {
             let user = await prisma.passageiro.findUnique({ where: { CPF: id } })
@@ -57,7 +58,8 @@ export default {
                 data: {
                     Nome,
                     Email,
-                    Telefone
+                    Telefone,
+                    Senha
                 }
             })
             return res.json(user)
