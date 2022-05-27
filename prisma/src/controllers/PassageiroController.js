@@ -57,8 +57,7 @@ export default {
                 data: {
                     Nome,
                     Email,
-                    Telefone,
-                    AtualizadoEm: new Date()
+                    Telefone
                 }
             })
             return res.json(user)

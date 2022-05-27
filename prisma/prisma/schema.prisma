@@ -13,10 +13,11 @@ datasource db {
 model Passageiro {
   CPF          String               @id
   Email        String               @unique
+  Senha        String
   Nome         String
   Telefone     String
   CriadoEm     DateTime             @default(now())
-  AtualizadoEm DateTime?             
+  AtualizadoEm DateTime?            @updatedAt
   RemovidoEm   DateTime?
   viagens      PassageiroOnViagem[]
 
@@ -38,6 +39,7 @@ model Motorista {
   CPF          String              @id
   Email        String              @unique
   Nome         String
+  Senha        String
   Telefone     String
   carro        Carro[]
   CriadoEm     DateTime            @default(now())
