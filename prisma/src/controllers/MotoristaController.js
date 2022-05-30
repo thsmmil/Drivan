@@ -1,11 +1,12 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 export default {
     async createDriver(req, res) {
         try {
-            const { CPF, Nome, Email, Telefone } = req.body;
+            const { CPF, Nome, Email, Telefone, Senha } = req.body;
             let user = await prisma.motorista.findUnique({
                 where: {
                     Email
@@ -14,13 +15,14 @@ export default {
             if (user) {
                 return res.json({ error: "Email já cadastrado" })
             }
-
+            const hashedPassword = await bcrypt.hash(Senha, 10);
             user = await prisma.motorista.create({
                 data: {
                     CPF,
                     Nome,
                     Email,
                     Telefone,
+                    Senha: hashedPassword
                 },
             });
             return res.json(user);
@@ -47,24 +49,39 @@ export default {
     },
     async updateDriver(req, res) {
         const { id } = req.params;
-        const { Nome, Email, Telefone } = req.body;
+        const { Nome, Email, Telefone, Senha } = req.body;
 
         try {
             let user = await prisma.motorista.findUnique({ where: { CPF: id } })
             if (!user)
                 return res.json({ error: "Motorista não encontrado" })
-            user = await prisma.motorista.update({
-                where: { CPF: id },
-                data: {
-                    Nome,
-                    Email,
-                    Telefone,
-                    AtualizadoEm: new Date()
-                }
-            })
+            const hashedPassword = await bcrypt.hash(Senha, 10);
+            if (await bcrypt.compare(Senha, user.Senha)) {
+                user = await prisma.motorista.update({
+                    where: { CPF: id },
+                    data: {
+                        Nome,
+                        Email,
+                        Telefone,
+                        Senha: user.Senha
+                    }
+                })
+            } else {
+                let hashedPassword = await bcrypt.hash(Senha, 10)
+                user = await prisma.motorista.update({
+                    where: { CPF: id },
+                    data: {
+                        Nome,
+                        Email,
+                        Telefone,
+                        Senha: hashedPassword
+                    }
+                })
+            }
+
             return res.json(user)
         } catch (error) {
-            return res.json({ error : error.message })
+            return res.json({ error: error.message })
         }
     },
     async deleteDriver(req, res) {

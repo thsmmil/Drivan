@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
@@ -14,18 +15,20 @@ export default {
             if (user) {
                 return res.json({ error: "Email já cadastrado" })
             }
+            const hashedPassword = await bcrypt.hash(Senha, 10);
             user = await prisma.passageiro.create({
                 data: {
                     CPF,
                     Nome,
                     Email,
-                    Senha,
-                    Telefone
+                    Senha: hashedPassword,
+                    Telefone,
+                    AtualizadoEm: null
                 },
             });
             return res.json(user);
         } catch (error) {
-            return res.json({error: error.message})
+            return res.json({ error: error.message })
         }
     },
     async findAllPassenger(req, res) {
@@ -33,7 +36,7 @@ export default {
             const users = await prisma.passageiro.findMany();
             return res.json(users);
         } catch (error) {
-            return res.json({ error })
+            return res.json({ error: error.message })
         }
     },
     async findPassenger(req, res) {
@@ -52,19 +55,33 @@ export default {
         try {
             let user = await prisma.passageiro.findUnique({ where: { CPF: id } })
             if (!user)
-                return res.json({ error: "Passageiro não encontrado" })
-            user = await prisma.passageiro.update({
-                where: { CPF: id },
-                data: {
-                    Nome,
-                    Email,
-                    Telefone,
-                    Senha
-                }
-            })
+                return res.json({ error: "Passageiro não encontrado" });
+            if (await bcrypt.compare(Senha, user.Senha)) {
+                user = await prisma.passageiro.update({
+                    where: { CPF: id },
+                    data: {
+                        Nome,
+                        Email,
+                        Telefone,
+                        Senha: user.Senha
+                    }
+                })
+            }else{
+                let hashedPassword = await bcrypt.hash(Senha, 10)
+                user = await prisma.passageiro.update({
+                    where: { CPF: id },
+                    data: {
+                        Nome,
+                        Email,
+                        Telefone,
+                        Senha: hashedPassword
+                    }
+                })
+            }
+
             return res.json(user)
         } catch (error) {
-            return res.json({ error : error.message })
+            return res.json({ error: error.message })
         }
     },
     async deletePassenger(req, res) {

@@ -27,6 +27,7 @@ model Carro {
   Id          Int       @id @default(autoincrement())
   Modelo      String
   Marca       String
+  Placa       String
   Ano         Int
   Cor         String
   mostorista  Motorista @relation(fields: [motoristaId], references: [CPF])

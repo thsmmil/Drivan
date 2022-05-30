@@ -3,12 +3,13 @@ import { Router } from 'express';
 import PassageiroController from './controllers/PassageiroController';
 import MotoristaController from './controllers/MotoristaController';
 import CarroController from './controllers/CarroController';
+import LoginController from './controllers/LoginController';
 
 const router = Router();
 router.post("/passageiro", PassageiroController.createPassenger);
 router.get("/passageiros", PassageiroController.findAllPassenger);
 router.get("/passageiro/:id", PassageiroController.findPassenger);
-router.put("/passageiro/:id", PassageiroController.updatePassenger);
+router.put("/passageiro/:id",LoginController.authenticateToken, PassageiroController.updatePassenger);
 router.delete("/passageiro/:id", PassageiroController.deletePassenger);
 
 router.post("/motorista", MotoristaController.createDriver);
@@ -22,5 +23,7 @@ router.get("/carros", CarroController.findAllCar);
 router.get("/carro/:id", CarroController.findCar);
 router.put("/carro/:id", CarroController.updateCar);
 router.delete("/carro/:id", CarroController.deleteCar);
+
+router.post('/login', LoginController.authPassenger);
 
 export { router }

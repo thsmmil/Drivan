@@ -5,81 +5,78 @@ const prisma = new PrismaClient();
 export default {
     async createCar(req, res) {
         try {
-            const { CPF, Nome, Email, Telefone } = req.body;
-            let user = await prisma.carro.findUnique({
-                where: {
-                    Email
-                }
-            })
-            if (user) {
-                return res.json({ error: "Email já cadastrado" })
-            }
+            const { Modelo, Marca, Placa, Ano, Cor, mostoristaId } = req.body;
 
-            user = await prisma.motorista.create({
+            const carro = await prisma.carro.create({
                 data: {
-                    CPF,
-                    Nome,
-                    Email,
-                    Telefone,
+                    Modelo,
+                    Marca,
+                    Placa,
+                    Ano,
+                    Cor
                 },
+                include: {
+                    mostorista
+                }
             });
-            return res.json(user);
+            return res.json(carro);
         } catch (error) {
             return res.json({ error: error.message })
         }
     },
     async findAllCar(req, res) {
         try {
-            const users = await prisma.motorista.findMany();
+            const cars = await prisma.carro.findMany();
             return res.json(users);
         } catch (error) {
             return res.json({ error: error.message })
         }
     },
     async findCar(req, res) {
-        const { id } = req.params;
-        const user = await prisma.motorista.findUnique({
+        const { Id } = req.params;
+        const car = await prisma.carro.findUnique({
             where: {
-                CPF: id
+                Id
             }
         });
-        user ? res.json(user) : res.json({ error: "Motorista não encontrado" })
+        user ? res.json(car) : res.json({ error: "Carro não encontrado" })
     },
     async updateCar(req, res) {
-        const { id } = req.params;
-        const { Nome, Email, Telefone } = req.body;
+        const { Id } = req.params;
+        const { Modelo, Marca, Placa, Ano, Cor } = req.body;
 
         try {
-            let user = await prisma.motorista.findUnique({ where: { CPF: id } })
-            if (!user)
-                return res.json({ error: "Motorista não encontrado" })
-            user = await prisma.motorista.update({
-                where: { CPF: id },
+            let car = await prisma.carro.findUnique({ where: { Id } })
+            if (!car)
+                return res.json({ error: "Carro não encontrado" })
+            car = await prisma.carro.update({
+                where: { Id },
                 data: {
-                    Nome,
-                    Email,
-                    Telefone,
-                    AtualizadoEm: new Date()
+                    Modelo,
+                    Marca,
+                    Placa,
+                    Ano,
+                    Cor
                 }
             })
-            return res.json(user)
+            return res.json(car)
         } catch (error) {
-            return res.json({ error : error.message })
+            return res.json({ error: error.message })
         }
     },
     async deleteCar(req, res) {
         try {
-            const { id } = req.params;
-            const user = await prisma.motorista.findUnique({
+            const { Id } = req.params;
+            const car = await prisma.carro.findUnique({
                 where: {
-                    CPF: id
+                    Id
                 }
             });
-            if (!user) res.json({ error: "Motorista não encontrado" })
+            if (!car) res.json({ error: "Carro não encontrado" })
             await prisma.motorista.delete({
-                where: { CPF: id }
+                where: { Id }
             })
-            return res.json({ message: "Motorista excluído com sucesso" })
+            return res.json({ message: "Carro excluído com sucesso" })
         } catch (error) {
             return res.json({ error })
         }
