@@ -5,10 +5,11 @@ import MotoristaController from './controllers/MotoristaController';
 import CarroController from './controllers/CarroController';
 import LoginController from './controllers/LoginController';
 
+
 const router = Router();
 router.post("/passageiro", PassageiroController.createPassenger);
 router.get("/passageiros", PassageiroController.findAllPassenger);
-router.get("/passageiro/:id", PassageiroController.findPassenger);
+router.get("/passageiro/:id",LoginController.authenticateToken, PassageiroController.findPassenger);
 router.put("/passageiro/:id",LoginController.authenticateToken, PassageiroController.updatePassenger);
 router.delete("/passageiro/:id", PassageiroController.deletePassenger);
 
@@ -24,6 +25,5 @@ router.get("/carro/:id", CarroController.findCar);
 router.put("/carro/:id", CarroController.updateCar);
 router.delete("/carro/:id", CarroController.deleteCar);
 
-router.post('/login', LoginController.authPassenger);
 
 export { router }
