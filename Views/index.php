@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
-    <!-- Latest compiled and minified CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Drivan</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="../wwwroot/css/indexLogin.css">
 </head>
 
 <body>
@@ -29,12 +29,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-7 min-vh-100">
-                <div class="d-flex flex-column justify-content-center h-100 w-100">
+            <div class="col-7 vh-100">
+                <div class="d-flex flex-column justify-content-center h-100">
                     <div class="card py-3 px-4 mx-2" style="border-radius: 1rem;">
                         <div class="card-body text-black">
-                            <form>
                             <h5 class="fw-normal mb-3" style="letter-spacing: 1px;">Acesse a sua conta!</h5>
+                            <form action="./Home/indexPassageiro.php" method="GET">
                                 <div class="mb-4">
                                     <label for="email" class="form-label">E-mail:</label>
                                     <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" name="email">
@@ -43,16 +43,15 @@
                                     <label for="pwd" class="form-label">Senha:</label>
                                     <input type="password" class="form-control" id="pwd" placeholder="Insira sua senha" name="pswd">
                                 </div>
-                                <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Mantenha-me conectado
-                                    </label>
+                                <div class="form-check form-switch mb-3">
+                                    <input class="form-check-input" type="checkbox" id="remember">
+                                    <label class="form-check-label" for="remember">Mantenha-me conectado</label>
                                 </div>
                                 <div class="d-grid gap-2 col-4 me-auto">
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary rounded-pill">Login</button>
                                 </div>
-                                <div class="hr d-flex align-items-center my-4">
-                                    <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
+                                <div class="divider d-flex align-items-center my-4">
+                                <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
                                 </div>
                                 <p><a href="#!" class="link-info">Cadastra-se aqui (Passageiro)</a></p>
                                 <p><a href="#!" class="link-info">Cadastra-se aqui (Motorista)</a></p>
