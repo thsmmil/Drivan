@@ -14,14 +14,13 @@
 </head>
 
 <body>
-
     <div class="container-fluid min-vh-100">
         <div class="row min-vh-100">
             <div class="col-5 bg-secondary">
                 <div class="d-flex flex-column justify-content-center h-100 w-100">
                     <div class="d-flex flex-column justify-content-center">
                         <div class="text-center">
-                            <img src="./wwwroot/images/icon.png" width="350" height="250">
+                            <img src="../wwwroot/images/icon.png" width="350" height="250">
                             <h1 class="text-white">Drivan</h1>
                         </div>
                         <p class="text-white fs-5 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus
@@ -43,18 +42,26 @@
                                     <label for="pwd" class="form-label">Senha:</label>
                                     <input type="password" class="form-control" id="pwd" placeholder="Insira sua senha" name="pswd">
                                 </div>
-                                <div class="form-check form-switch mb-3">
-                                    <input class="form-check-input" type="checkbox" id="remember">
-                                    <label class="form-check-label" for="remember">Mantenha-me conectado</label>
+                                <div class="form-check mb-3">
+                                    <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="remember"> Mantenha-me conectado
+                                    </label>
                                 </div>
                                 <div class="d-grid gap-2 col-4 me-auto">
                                     <button type="submit" class="btn btn-primary rounded-pill">Login</button>
                                 </div>
                                 <div class="divider d-flex align-items-center my-4">
-                                <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
+                                    <p class="text-center fw-bold mx-3 mb-0 text-muted">OU</p>
                                 </div>
-                                <p><a href="#!" class="link-info">Cadastra-se aqui (Passageiro)</a></p>
-                                <p><a href="#!" class="link-info">Cadastra-se aqui (Motorista)</a></p>
+                                <div class="dropdown">
+                                    <button class="btn btn btn-light" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Novo por aqui? Cadastra-se agora
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item" href="#">Passageiro</a></li>
+                                        <li><a class="dropdown-item" href="#">Motorista</a></li>
+                                    </ul>
+                                </div>
 
                             </form>
                         </div>

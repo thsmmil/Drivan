@@ -11,15 +11,16 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-        .card{
+        .card {
             border-radius: 1rem;
         }
     </style>
 </head>
 
 <body>
+    <?php include '../Shared/layoutHeader.php'; ?>
     <section class="vh-100">
-        <div class="container-fluid h-100">
+        <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center">
                 <div class="card mt-4 bg-secondary">
                     <div class="card-body">
@@ -38,8 +39,41 @@
                         </form>
                     </div>
                 </div>
-                <div class="card mt-5">
-                    
+                <div class="d-flex flex-column mt-5">
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
+                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
