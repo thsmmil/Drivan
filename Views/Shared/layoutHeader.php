@@ -13,28 +13,29 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
-
-        <div class="container-fluid vw-100">
-            <!-- Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Link 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Link 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Link 3</a>
-                </li>
-                <li class="nav-item ms-auto ">
-                    <div class="">
-                        <img  class="img-thumbnail rounded-circle"src="https://cdn1.vectorstock.com/i/1000x1000/53/40/user-member-social-net-avatar-profile-icon-vector-22965340.jpg" width="50" height="50">
-                    </div>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../wwwroot/images/icon.png" alt="" width="30" height="24" class="d-inline-block align-text-center">
+                Drivan
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar1">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar1">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Viagem</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="#">Linha</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
     </nav>
 </body>
 

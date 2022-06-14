@@ -25,14 +25,14 @@
                 <div class="card mt-4 bg-secondary">
                     <div class="card-body">
                         <form action="#" method="post">
-                            <div class="d-flex flex-row justify-content-evenly">
-                                <div class="mb-2">
+                            <div class="d-flex flex-row justify-content-evenly form-group">
+                                <div class="mx-2">
                                     <input type="text" class="form-control" id="cityOrigin" placeholder="Digite a cidade de saída" name="cityOrigin">
                                 </div>
-                                <div class="mb-2">
+                                <div class="mx-2">
                                     <input type="text" class="form-control" id="cityDestiny" placeholder="Digite a cidade destino" name="cityOrigin">
                                 </div>
-                                <div class="mb-2 me-5">
+                                <div class="me-5">
                                     <button type="submit" class="btn btn-primary rounded-pill">Pesquisar</button>
                                 </div>
                             </div>

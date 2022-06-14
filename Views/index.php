@@ -20,7 +20,7 @@
                 <div class="d-flex flex-column justify-content-center h-100 w-100">
                     <div class="d-flex flex-column justify-content-center">
                         <div class="text-center">
-                            <img src="../wwwroot/images/icon.png" width="350" height="250">
+                            <img src="../wwwroot/images/icon.png" class="img-fluid" width="350" height="250">
                             <h1 class="text-white">Drivan</h1>
                         </div>
                         <p class="text-white fs-5 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore natus
@@ -58,8 +58,8 @@
                                         Novo por aqui? Cadastra-se agora
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <li><a class="dropdown-item" href="#">Passageiro</a></li>
-                                        <li><a class="dropdown-item" href="#">Motorista</a></li>
+                                        <li><a class="dropdown-item" href="./User/Register.php?typeUser=Passageiro">Passageiro</a></li>
+                                        <li><a class="dropdown-item" href="./User/Register.php?typeUser=Motorista">Motorista</a></li>
                                     </ul>
                                 </div>
 
