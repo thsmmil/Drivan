@@ -47,7 +47,7 @@
                                 <div class="card-body text-center">
                                 <h5 class="card-title ">Registrar Novo Carro</h5>
                                     <p class="card-text">Adicione aqui o seu carro.</p>
-                                    <a href="../Car/index.php" class="btn btn-primary">Adicionar</a>
+                                    <a href="../Car/upsertCar.php" class="btn btn-primary">Adicionar</a>
                                 </div>
                             </div>
                         </div>

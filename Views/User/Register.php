@@ -41,7 +41,7 @@
                     <div class="card py-3 px-4 mx-2 shadow">
                         <div class="card-body text-black">
                             <h5 class="fw-normal mb-3" style="letter-spacing: 1px;"><?php echo"Cadastro $user" ?></h5>
-                            <?php echo "<form action='../Home/index$user.php' method='GET'>" ?>
+                            <?= "<form action='../Home/index$user.php' method='GET'>" ?>
                             <div class="mb-3">
                                 
                                 <input type="text" class="form-control" id="cpf" placeholder="CPF" name="cpf">
@@ -56,7 +56,7 @@
                             </div>
                             <div class="mb-3">
                                 
-                                <input type="tel" class="form-control" id="phone" placeholder="Telefone" name="phone" oninput="mask(this, mphone);" onblur="mask(this, mphone);">
+                                <input type="tel" class="form-control" id="phone" placeholder="Telefone" name="phone" maxlength="15">
                             </div>
                             <div class="mb-3">
                                 

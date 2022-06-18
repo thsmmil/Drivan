@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3030/passageiro/99999999999
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhpYWdvIiwiaWF0IjoxNjU0MzA2MjAzLCJleHAiOjE2NTQzMDYyMTh9.URysLmvTmu9agEFClHSADOMinvzv5jp8tP1VO9xYBoE
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGhpYWdvIiwiaWF0IjoxNjU0MzA2MjAzLCJleHAiOjE2NTQzMDYyMTh9.URysLmvTmu9agEFClHSADOMinvzv5jp8tP1VO9xYBoE
 
 ###
 PUT http://localhost:3030/passageiro/99999999999

@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <form>
                                 <h4>Informações do carro</h4>
                                     <div class="m-3">
