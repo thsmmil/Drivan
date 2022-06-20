@@ -2,8 +2,8 @@
     $ApiEndpoint = "http://localhost:3030/passageiro/99999999999";
     $ch = curl_init($ApiEndpoint);
     curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $user = json_decode(curl_exec($ch));
-    print_r($user);exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,38 +40,38 @@
                                     <div class="m-3 row">
                                         <label for="cpf" class="col-sm-4 col-form-label">CPF</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" id="cpf" value="000.000.000-00" name="modelCar" readonly />
+                                            <input type="text" class="form-control-plaintext" id="cpf" value="<?="$user->CPF"?>" name="cpf" readonly />
                                         </div>
 
                                     </div>
                                     <div class="m-3 row">
                                         <label for="email" class="col-sm-4 col-form-label">E-mail</label>
                                         <div class="col-sm-8">
-                                            <input type="email" class="form-control" id="email" required>
+                                            <input type="email" class="form-control" id="email" value="<?= $user->Email ?>" name="email" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="nome" class="col-sm-4 col-form-label">Nome</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nome" required>
+                                            <input type="text" class="form-control" id="nome" value="<?= $user->Nome ?>" name="nome" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="phone" class="col-sm-4 col-form-label">Telefone</label>
                                         <div class="col-sm-8">
-                                            <input type="tel" class="form-control" id="phone" required>
+                                            <input type="tel" class="form-control" id="phone" value="<?= $user->Telefone ?>" name="phone" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="pwd" class="col-sm-4 col-form-label">Senha</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="pwd" required>
+                                            <input type="password" class="form-control" id="pwd" name="pwd" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="inputPassword" class="col-sm-4 col-form-label">Confirmar Senha</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="pwdConfirm" required>
+                                            <input type="password" class="form-control" id="pwdConfirm" name="pwdConfirm" required>
                                         </div>
                                     </div>
                                     <div class="ms-3">

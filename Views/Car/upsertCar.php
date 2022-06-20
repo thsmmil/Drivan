@@ -39,7 +39,7 @@
                                         <input type="text" class="form-control" id="plateCar" placeholder="Placa do Carro" name="plateCar">
                                     </div>
                                     <div class="m-3">
-                                        <input type="number" class="form-control" id="yearCar" min="1950" step="1" placeholder="Ano do Carro" <?php echo "max='" . $Year + 2 . "'"; ?> />
+                                        <input type="number" class="form-control" id="yearCar" min="1950" name="yearCar" placeholder="Ano do Carro" <?php echo "max='" . $Year + 2 . "'"; ?> />
                                     </div>
                                     <div class="m-3">
                                         <input type="text" class="form-control" id="colorCar" placeholder="Cor do Carro" name="colorCar">

@@ -19,7 +19,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/Drivan/Views/Home/indexMotorista.php">
                 <img src="../../wwwroot/images/icon.png" alt="" width="30" height="24" class="d-inline-block align-text-center">
                 Drivan
             </a>
@@ -29,13 +29,16 @@
             <div class="collapse navbar-collapse" id="navbar1">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link active" href="#">Home</a>
+                        <a class="nav-link active" href="/Drivan/Views/Home/indexMotorista.php">Home</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link active" href="#">Viagem</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link active" href="#">Linha</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link active" href="/Drivan/Views/Car/index.php">Carro</a>
                     </li>
                 </ul>
             </div>
