@@ -28,7 +28,7 @@ export default {
             });
             return res.json(user);
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async findAllPassenger(req, res) {
@@ -36,7 +36,7 @@ export default {
             const users = await prisma.passageiro.findMany();
             return res.json(users);
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async findPassenger(req, res) {
@@ -46,19 +46,18 @@ export default {
                 CPF: id
             }
         });
-        user ? res.json(user) : res.json({ error: "Passageiro não encontrado" })
+        user ? res.json(user) : res.status(404).send({ error: "Passageiro não encontrado" })
     },
     async updatePassenger(req, res) {
-        const { id } = req.params;
-        const { Nome, Email, Telefone, Senha } = req.body;
+        const { CPF, Nome, Email, Telefone, Senha } = req.body;
 
         try {
-            let user = await prisma.passageiro.findUnique({ where: { CPF: id } })
+            let user = await prisma.passageiro.findUnique({ where: { CPF } })
             if (!user)
-                return res.json({ error: "Passageiro não encontrado" });
+                return res.status(404).send({ error: "Passageiro não encontrado" });
             if (await bcrypt.compare(Senha, user.Senha)) {
                 user = await prisma.passageiro.update({
-                    where: { CPF: id },
+                    where: { CPF },
                     data: {
                         Nome,
                         Email,
@@ -66,10 +65,10 @@ export default {
                         Senha: user.Senha
                     }
                 })
-            }else{
+            } else {
                 let hashedPassword = await bcrypt.hash(Senha, 10)
                 user = await prisma.passageiro.update({
-                    where: { CPF: id },
+                    where: { CPF },
                     data: {
                         Nome,
                         Email,
@@ -81,7 +80,7 @@ export default {
 
             return res.json(user)
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async deletePassenger(req, res) {
@@ -92,13 +91,13 @@ export default {
                     CPF: id
                 }
             });
-            if (!user) res.json({ error: "Passageiro não encontrado" })
+            if (!user) return res.status(404).send({ error: "Passageiro não encontrado" })
             await prisma.passageiro.delete({
                 where: { CPF: id }
             })
-            return res.json({ message: "Passageiro excluído com sucesso" })
+            return res.sendStatus(204)
         } catch (error) {
-            return res.json({ error })
+            return res.status(500).send({ error })
         }
     }
 }

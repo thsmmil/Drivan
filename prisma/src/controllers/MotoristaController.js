@@ -22,12 +22,13 @@ export default {
                     Nome,
                     Email,
                     Telefone,
-                    Senha: hashedPassword
+                    Senha: hashedPassword,
+                    AtualizadoEm: null
                 },
             });
             return res.json(user);
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async findAllDriver(req, res) {
@@ -35,7 +36,7 @@ export default {
             const users = await prisma.motorista.findMany();
             return res.json(users);
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async findDriver(req, res) {
@@ -45,20 +46,19 @@ export default {
                 CPF: id
             }
         });
-        user ? res.json(user) : res.json({ error: "Motorista não encontrado" })
+        user ? res.json(user) : res.status(404).send({ error: "Motorista não encontrado" })
     },
     async updateDriver(req, res) {
-        const { id } = req.params;
-        const { Nome, Email, Telefone, Senha } = req.body;
+        const { CPF ,Nome, Email, Telefone, Senha } = req.body;
 
         try {
-            let user = await prisma.motorista.findUnique({ where: { CPF: id } })
+            let user = await prisma.motorista.findUnique({ where: { CPF } })
             if (!user)
-                return res.json({ error: "Motorista não encontrado" })
+                return res.status(404).send({ error: "Motorista não encontrado" })
             const hashedPassword = await bcrypt.hash(Senha, 10);
             if (await bcrypt.compare(Senha, user.Senha)) {
                 user = await prisma.motorista.update({
-                    where: { CPF: id },
+                    where: { CPF },
                     data: {
                         Nome,
                         Email,
@@ -69,7 +69,7 @@ export default {
             } else {
                 let hashedPassword = await bcrypt.hash(Senha, 10)
                 user = await prisma.motorista.update({
-                    where: { CPF: id },
+                    where: { CPF },
                     data: {
                         Nome,
                         Email,
@@ -81,7 +81,7 @@ export default {
 
             return res.json(user)
         } catch (error) {
-            return res.json({ error: error.message })
+            return res.status(500).send({ error: error.message })
         }
     },
     async deleteDriver(req, res) {
@@ -92,13 +92,13 @@ export default {
                     CPF: id
                 }
             });
-            if (!user) res.json({ error: "Motorista não encontrado" })
+            if (!user) return res.status(404).send({ error: "Motorista não encontrado" })
             await prisma.motorista.delete({
                 where: { CPF: id }
             })
-            return res.json({ message: "Motorista excluído com sucesso" })
+            return res.sendStatus(204)
         } catch (error) {
-            return res.json({ error })
+            return res.status(500).send({ error })
         }
     }
 

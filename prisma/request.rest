@@ -2,17 +2,90 @@ POST http://localhost:3030/carro
 Content-Type : application/json
 
 {
-    "Modelo" : "Palio",
-    "Marca" : "Fiat", 
+    "Modelo" : "Tesla-XSL",
+    "Marca" : "Tesla", 
     "Placa" : "857-ADS", 
-    "Ano" : 2013, 
+    "Ano" : 2022, 
     "Cor" : "Preto", 
-    "mostorista" : "7777777777"
+    "Email" : "teste@gmail.com"
 }
 
 ###
-GET http://localhost:3030/carros
+GET http://localhost:3030/carros/1235678911
+###
+GET http://localhost:3030/carros/
+###
+GET http://localhost:3030/carro/8
+###
+PUT http://localhost:3030/carro/
+Content-Type: application/json
 
+{
+    "Id": 8,
+    "Modelo": "Chevet",
+    "Marca": "Chevrolet",
+    "Placa": "1312-ADS",
+    "Ano": 2018,
+    "Cor": "Lilás"
+}
+###
+DELETE http://localhost:3030/carro/8
+###
+POST http://localhost:3030/motorista/
+Content-Type: application/json
+
+{
+    "CPF": "13131313131",
+    "Nome": "Thiago Hortencio",
+    "Email": "vamos@gmail.com",
+    "Telefone": "87996645630",
+    "Senha": "123456" 
+}
+###
+PUT http://localhost:3030/motorista/
+Content-Type: application/json
+
+{
+    "CPF": "13131313131",
+    "Nome": "Thiago Hortencio",
+    "Email": "vamos@gmail.com",
+    "Telefone": "87996645630",
+    "Senha": "123456" 
+}
+###
+GET http://localhost:3030/motoristas/
+###
+GET http://localhost:3030/motorista/13131313131
+###
+DELETE http://localhost:3030/motorista/13131313131
+###
+POST http://localhost:3030/passageiro/
+Content-Type: application/json
+
+{
+    "CPF": "13131313131",
+    "Nome": "Thiago Hortencio",
+    "Email": "vamos@gmail.com",
+    "Telefone": "87996645630",
+    "Senha": "123456" 
+}
+###
+PUT http://localhost:3030/passageiro/
+Content-Type: application/json
+
+{
+    "CPF": "13131313131",
+    "Nome": "Thiago Hortencio",
+    "Email": "vamos@gmail.com",
+    "Telefone": "87996645630",
+    "Senha": "123456" 
+}
+###
+GET http://localhost:3030/passageiros/
+###
+GET http://localhost:3030/passageiro/13131313131
+###
+DELETE http://localhost:3030/passageiro/13131313131
 ###
 DELETE http://localhost:3040/logout
 Content-Type: application/json
@@ -28,7 +101,6 @@ Content-Type: application/json
     "token" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJDUEYiOiI5OTk5OTk5OTk5OSIsIkVtYWlsIjoidGhpYWdvQGdtYWlsLmNvbSIsIlNlbmhhIjoiJDJiJDEwJENrMlZaZXZuUUlEblVRc24uMGEvdk9MZ3VJUEpHalowTFRSQVRDQnBtME1WbEdnbmh4SENLIiwiTm9tZSI6IlRoaWFnbyIsIlRlbGVmb25lIjoiODc5OTY2NDU2MzAiLCJDcmlhZG9FbSI6IjIwMjItMDUtMzBUMDE6Mzc6NTUuMTgxWiIsIkF0dWFsaXphZG9FbSI6IjIwMjItMDYtMDRUMDE6MDY6MTEuNzgzWiIsIlJlbW92aWRvRW0iOm51bGwsImlhdCI6MTY1NDMwNjUzM30.LpUMyhw3es_Korg21Q4JiJIoa3K6mt2URIO466h901U"
 }
 ###
-
 POST http://localhost:3040/login
 Content-Type: application/json
 
@@ -56,3 +128,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3030/passageiro/99999999999
+
+###
+GET http://localhost:3030/passageiros/

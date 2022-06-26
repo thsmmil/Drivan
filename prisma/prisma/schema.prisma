@@ -44,7 +44,7 @@ model Motorista {
   Telefone     String
   carro        Carro[]
   CriadoEm     DateTime            @default(now())
-  AtualizadoEm DateTime?
+  AtualizadoEm DateTime?           @updatedAt
   RemovidoEm   DateTime?
   viagens      MotoristaOnViagem[]
 }
@@ -90,6 +90,7 @@ model MotoristaOnViagem {
 model Estado {
   Id      Int      @id @default(autoincrement())
   Nome    String
+  Uf      String
   cidades Cidade[]
 
 }
