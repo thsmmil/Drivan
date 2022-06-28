@@ -1,3 +1,16 @@
+<?php session_start();
+echo session_id();
+
+if (isset($_GET['logout']))
+    {
+        Logout();
+    }
+function Logout(){
+    session_destroy();
+    header("Location: /Drivan/Views/index.php", replace: false, response_code: 302);
+    exit;
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,7 +32,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-secondary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/Drivan/Views/Home/indexMotorista.php">
+            <a class="navbar-brand" <?=  "href='/Drivan/Views/Home/index". $_SESSION["typeUser"]. ".php'" ?>>
                 <img src="../../wwwroot/images/icon.png" alt="" width="30" height="24" class="d-inline-block align-text-center">
                 Drivan
             </a>
@@ -29,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbar1">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link active" href="/Drivan/Views/Home/indexMotorista.php">Home</a>
+                        <a class="nav-link active" <?=  "href='/Drivan/Views/Home/index". $_SESSION["typeUser"]. ".php'" ?>>Home</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link active" href="#">Viagem</a>
@@ -39,6 +52,9 @@
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link active" href="/Drivan/Views/Car/index.php">Carro</a>
+                    </li>
+                    <li class="nav-item active me-auto">
+                        <a class="nav-link active" href="?logout=true">Sair</a>
                     </li>
                 </ul>
             </div>

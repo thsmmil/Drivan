@@ -15,14 +15,14 @@ async function main() {
       data: estado
     })
   }
-  // for (let cidade of cidades) {
-  //   await prisma.cidade.create({
-  //     data: {
-  //       Nome: cidade.Nome,
-  //       estado: {connect: {Id: cidade.estadoId}},
-  //     }
-  //   })
-  // }
+  for (let cidade of cidades) {
+    await prisma.cidade.create({
+      data: {
+        Nome: cidade.Nome,
+        estado: {connect: {Id: cidade.estadoId}},
+      }
+    })
+  }
 }
 
 main().catch((e) =>{

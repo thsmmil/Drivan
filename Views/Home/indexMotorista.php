@@ -1,3 +1,10 @@
+<?php include '../Shared/layoutHeader.php'; ?>
+<?php 
+$ch = curl_init("http://localhost:3030/motorista/1313131311");
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$person = json_decode(curl_exec($ch));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +25,6 @@
 </head>
 
 <body>
-    <?php include '../Shared/layoutHeader.php'; ?>
     <section class="vh-100">
         <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center">
@@ -29,7 +35,7 @@
                                 <div class="card-body text-center">
                                     <h5 class="card-title ">Meus Carros</h5>
                                     <p class="card-text">Visualize os seus carros.</p>
-                                    <a href="../Car/index.php" class="btn btn-primary">Adicionar</a>
+                                    <a href="../Car/index.php" class="btn btn-primary">Visualizar</a>
                                 </div>
                             </div>
                         </div>
@@ -37,8 +43,8 @@
                             <div class="card my-2 ms-1 shadow-sm">
                                 <div class="card-body text-center">
                                 <h5 class="card-title ">Registrar Nova Viagem</h5>
-                                    <p class="card-text">Adicione aqui o seu carro.</p>
-                                    <a href="../Car/index.php" class="btn btn-primary">Adicionar</a>
+                                    <p class="card-text">Registre aqui sua nova viagem.</p>
+                                    <a href="../Viagem/index.php" class="btn btn-primary">Adicionar</a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +53,8 @@
                                 <div class="card-body text-center">
                                 <h5 class="card-title ">Registrar Novo Carro</h5>
                                     <p class="card-text">Adicione aqui o seu carro.</p>
-                                    <a href="../Car/upsertCar.php" class="btn btn-primary">Adicionar</a>
+                                    <a href="../Car/upsertCar.php?action=I" class="btn btn-primary mb-2">Adicionar</a>
+                                    
                                 </div>
                             </div>
                         </div>

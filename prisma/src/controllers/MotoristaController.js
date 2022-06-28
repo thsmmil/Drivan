@@ -43,7 +43,7 @@ export default {
         const { id } = req.params;
         const user = await prisma.motorista.findUnique({
             where: {
-                CPF: id
+                Email: id
             }
         });
         user ? res.json(user) : res.status(404).send({ error: "Motorista não encontrado" })

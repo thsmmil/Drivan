@@ -29,6 +29,7 @@ model Carro {
   Marca       String
   Placa       String
   Ano         Int
+  Assentos    Int
   Cor         String
   mostorista  Motorista @relation(fields: [motoristaId], references: [CPF])
   motoristaId String
@@ -56,6 +57,8 @@ model Viagem {
   DataIda     DateTime
   passageiros PassageiroOnViagem[]
   motoristas  MotoristaOnViagem[]
+  endereco    Endereco @relation(fields: [enderecoId], references: [Id])
+  enderecoId  Int
 
 }
 
@@ -109,5 +112,6 @@ model Endereco {
   PontoReferencia String
   cidade          Cidade @relation(fields: [cidadeId], references: [Id])
   cidadeId        Int
-  numero          Int?
+  viagem          Viagem[] 
+  Numero          Int?
 }

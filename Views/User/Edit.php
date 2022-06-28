@@ -1,7 +1,8 @@
+<?php include('../Shared/layoutHeader.php'); ?>
 <?php 
-    $ApiEndpoint = "http://localhost:3030/passageiro/99999999999";
+    $ApiEndpoint = "http://localhost:3030/passageiro/1313131313";
     $ch = curl_init($ApiEndpoint);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     $user = json_decode(curl_exec($ch));
 ?>
@@ -16,7 +17,7 @@
 </head>
 
 <body>
-    <?php include('../Shared/layoutHeader.php'); ?>
+    
     <section class="vh-100">
         <div class="container-fluid">
             <div class="row">

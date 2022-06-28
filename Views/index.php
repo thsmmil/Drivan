@@ -1,3 +1,10 @@
+<?php session_start();
+echo session_id();
+if(isset($_SESSION["login"])){
+    header("Location: /Drivan/Views/Home/index". $_SESSION["typeUser"] .".php", replace: false, response_code: 302);
+    exit;
+}
+ ?>
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -33,19 +40,23 @@
                     <div class="card py-3 px-4 mx-2" style="border-radius: 1rem;">
                         <div class="card-body text-black">
                             <h5 class="fw-normal mb-3" style="letter-spacing: 1px;">Acesse a sua conta!</h5>
-                            <form action="./Home/indexPassageiro.php" method="GET">
+                            <!-- ./../Controllers/LoginController.php -->
+                            <form action="../Controllers/LoginController.php" method="POST">
                                 <div class="mb-4">
                                     <label for="email" class="form-label">E-mail:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Insira seu e-mail" name="email">
+                                    <input type="email" class="form-control" id="email" required placeholder="Insira seu e-mail" name="Email">
                                 </div>
                                 <div class="mb-4">
                                     <label for="pwd" class="form-label">Senha:</label>
-                                    <input type="password" class="form-control" id="pwd" placeholder="Insira sua senha" name="pswd">
+                                    <input type="password" class="form-control" id="pwd" required placeholder="Insira sua senha" name="Senha">
                                 </div>
-                                <div class="form-check mb-3">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="remember"> Mantenha-me conectado
-                                    </label>
+                                <div class="form-check form-switch mb-3">
+                                    <!-- <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" name="typeUser"> Passageiro
+                                    </label> -->
+                                        <input class="form-check-input" type="checkbox" id="typeUser" name="typeUser">
+                                        <label class="form-check-label" for="typeUser">Passageiro</label>
+                                    
                                 </div>
                                 <div class="d-grid gap-2 col-4 me-auto">
                                     <button type="submit" class="btn btn-primary rounded-pill">Login</button>

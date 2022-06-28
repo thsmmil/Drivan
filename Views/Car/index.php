@@ -1,3 +1,11 @@
+<?php include('../Shared/layoutHeader.php'); ?>
+<?php
+$ApiEndpoint = "http://localhost:3030/carros/";
+$ch = curl_init($ApiEndpoint);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$car = json_decode(curl_exec($ch));
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,12 +16,15 @@
     <title>Carros - Drivan</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
     <script src="../../wwwroot/js/car.js"></script>
 </head>
 
 <body>
-    <?php include('../Shared/layoutHeader.php'); ?>
     <section class="vh-100">
         <div class="container-fluid">
             <div class="row">
@@ -35,27 +46,46 @@
                                             <th>Marca</th>
                                             <th>Placa</th>
                                             <th>Ano</th>
+                                            <th>Assentos</th>
                                             <th>Cor</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Palio</td>
-                                            <td>Fiat</td>
-                                            <td>PEQ8668</td>
-                                            <td>2010</td>
-                                            <td>Preto</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sprinter</td>
-                                            <td>Mercedes</td>
-                                            <td>PEQ8668</td>
-                                            <td>2013</td>
-                                            <td>Prata</td>
-                                            <td></td>
-                                        </tr>
+                                        <?php
+
+                                        if (isset($car)) {
+                                            foreach ($car as $row) {
+                                                echo "
+                                                <tr>
+                                                <td>
+                                                    " . $row->Modelo . "
+                                                </td>
+                                                <td>
+                                                    " . $row->Marca . "
+                                                </td>
+                                                <td>
+                                                    " . $row->Placa . "
+                                                </td>
+                                                <td>
+                                                    " . $row->Ano . "
+                                                </td>
+                                                <td>
+                                                    " . $row->Assentos . "
+                                                </td>
+                                                <td>
+                                                    " . $row->Cor . "
+                                                </td>
+                                                <td class='text-center'>
+                                                <a href='../../Controllers/CarController.php?action=U&Id=" . $row->Id . "' class='btn btn-info' title='Editar' data-toggle='tooltip'><i class='material-icons'>&#xE254;</i></a>
+                                                <a href='../../Controllers/CarController.php?action=D&Id=" . $row->Id . "' onclick='return texto()' class='btn btn-danger' title='Excluir' data-toggle='tooltip'><i class='material-icons'>&#xE872;</i></a>
+                                                </td>
+                                                
+                                              </tr>
+                                              ";
+                                            }
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -66,7 +96,11 @@
             </div>
         </div>
     </section>
-
+    <script>
+        function texto() {
+            return confirm('Tem certeza que deseja apagar esse registro?');
+        }
+    </script>
 </body>
 
 </html>

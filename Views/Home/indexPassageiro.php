@@ -1,3 +1,4 @@
+<?php include '../Shared/layoutHeader.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,12 +19,12 @@
 </head>
 
 <body>
-    <?php include '../Shared/layoutHeader.php'; ?>
     <section class="vh-100">
         <div class="container-fluid">
             <div class="d-flex flex-column justify-content-center">
                 <div class="card mt-4 bg-secondary">
                     <div class="card-body">
+                        <h3><?= $_SESSION["typeUser"]?></h3>
                         <form action="#" method="post">
                             <div class="d-flex flex-row justify-content-evenly form-group">
                                 <div class="mx-2">
@@ -50,10 +51,11 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card my-2 ms-1 border border-5 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                        <div class="card my-2 ms-1 shadow-sm">
+                                <div class="card-body text-center">
+                                <h5 class="card-title ">Editar Informaçoes</h5>
+                                    <p class="card-text">Visualize suas informações de perfil.</p>
+                                    <a href="../User/Edit.php" class="btn btn-primary">Visualizar</a>
                                 </div>
                             </div>
                         </div>

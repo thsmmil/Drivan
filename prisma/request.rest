@@ -2,12 +2,13 @@ POST http://localhost:3030/carro
 Content-Type : application/json
 
 {
-    "Modelo" : "Tesla-XSL",
-    "Marca" : "Tesla", 
-    "Placa" : "857-ADS", 
-    "Ano" : 2022, 
-    "Cor" : "Preto", 
-    "Email" : "teste@gmail.com"
+    "Modelo" : "Gol",
+    "Marca" : "Volkswagem", 
+    "Placa" : "1312-ADS", 
+    "Ano" : 2020, 
+    "Assentos": 5,
+    "Cor" : "Prata", 
+    "CPF" : "1313131311"
 }
 
 ###
@@ -15,13 +16,13 @@ GET http://localhost:3030/carros/1235678911
 ###
 GET http://localhost:3030/carros/
 ###
-GET http://localhost:3030/carro/8
+GET http://localhost:3030/carro/9
 ###
 PUT http://localhost:3030/carro/
 Content-Type: application/json
 
 {
-    "Id": 8,
+    "Id": 9,
     "Modelo": "Chevet",
     "Marca": "Chevrolet",
     "Placa": "1312-ADS",
@@ -29,15 +30,15 @@ Content-Type: application/json
     "Cor": "Lilás"
 }
 ###
-DELETE http://localhost:3030/carro/8
+DELETE http://localhost:3030/carro/9
 ###
 POST http://localhost:3030/motorista/
 Content-Type: application/json
 
 {
-    "CPF": "13131313131",
+    "CPF": "1313131311",
     "Nome": "Thiago Hortencio",
-    "Email": "vamos@gmail.com",
+    "Email": "vamo@gmail.com",
     "Telefone": "87996645630",
     "Senha": "123456" 
 }
@@ -55,17 +56,17 @@ Content-Type: application/json
 ###
 GET http://localhost:3030/motoristas/
 ###
-GET http://localhost:3030/motorista/13131313131
+GET http://localhost:3030/motorista/vamo@gmail.com
 ###
 DELETE http://localhost:3030/motorista/13131313131
 ###
-POST http://localhost:3030/passageiro/
+POST http://localhost:3030/passageiro
 Content-Type: application/json
 
 {
-    "CPF": "13131313131",
+    "CPF": "1313131313",
     "Nome": "Thiago Hortencio",
-    "Email": "vamos@gmail.com",
+    "Email": "vamo@gmail.com",
     "Telefone": "87996645630",
     "Senha": "123456" 
 }
@@ -83,9 +84,71 @@ Content-Type: application/json
 ###
 GET http://localhost:3030/passageiros/
 ###
-GET http://localhost:3030/passageiro/13131313131
+GET http://localhost:3030/passageiro/vamo@gmail.com
 ###
 DELETE http://localhost:3030/passageiro/13131313131
+###
+POST http://localhost:3030/endereco/
+Content-Type: application/json
+
+{
+    "Logradouro": "Rua Prof. Irineu",
+    "PontoReferencia": "Prox. Hospital das Clínicas",
+    "cidadeId": 1597,
+    "Numero": 984
+}
+###
+PUT http://localhost:3030/endereco/
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "Logradouro": "Rua Lourival Tavares Aguiar",
+    "PontoReferencia": "Entrando na placa do Loteamento Sales",
+    "cidadeId": 1505,
+    "Numero": 24 
+}
+###
+GET http://localhost:3030/enderecos/
+###
+GET http://localhost:3030/endereco/7
+###
+DELETE http://localhost:3030/endereco/7
+###
+POST http://localhost:3030/viagem/
+Content-Type: application/json
+
+{
+    "HoraSaida": "2022-06-27T03:21:13.131Z",
+    "Valor": 13.13,
+    "DataIda": "2022-06-28T03:21:13.131Z",
+    "motoristaId": "13131313131",
+    "enderecoId": 4
+}
+###
+GET http://localhost:3030/viagens/
+###
+GET http://localhost:3030/viagem/2
+###
+PUT http://localhost:3030/viagem/
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "HoraSaida": "2022-06-27T04:21:13.131Z",
+    "Valor": 13.13,
+    "DataIda": "2022-06-28T03:21:13.131Z",
+    "IsConcluido": false,
+    "iniciadoEm": "2022-06-28T05:21:13.131Z",
+    "concluidoEm": null,
+    "avaliacao": null,
+    "IsConcluidoPass": false,
+    "iniciadoEmPass": "2022-06-28T05:21:13.131Z",
+    "concluidoEmPass": null,
+    "avaliacaoPass": null,
+    "passageiroId": "13131313131",
+    "motoristaId": "13131313131"
+}
 ###
 DELETE http://localhost:3040/logout
 Content-Type: application/json
@@ -105,7 +168,7 @@ POST http://localhost:3040/login
 Content-Type: application/json
 
 {
-    "Email" : "thiago@gmail.com",
+    "Email" : "vamo@gmail.com",
     "Senha" : "123456"
 }
 
@@ -131,3 +194,5 @@ GET http://localhost:3030/passageiro/99999999999
 
 ###
 GET http://localhost:3030/passageiros/
+###
+GET http://localhost:3030/cidades

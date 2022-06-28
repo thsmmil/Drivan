@@ -5,16 +5,17 @@ const prisma = new PrismaClient();
 export default {
     async createCar(req, res) {
         try {
-            const { Modelo, Marca, Placa, Ano, Cor, Email } = req.body;
+            const { Modelo, Marca, Placa, Ano, Cor, CPF, Assentos } = req.body;
 
             const carro = await prisma.carro.create({
                 data: {
                     Modelo,
+                    Assentos,
                     Marca,
                     Placa,
                     Ano,
                     Cor,
-                    mostorista: { connect: { Email } },
+                    mostorista: { connect: { CPF } },
                 }
             });
             return res.status(201).send(carro);
