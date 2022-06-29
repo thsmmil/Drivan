@@ -33,13 +33,20 @@ $car = json_decode(curl_exec($ch));
                         <div class="card-header">
                             <div class="card-title">
                                 <h3 class="card-label">
-                                    Meus Carros
+                                    <div class="row justify-content-between">
+                                        <div class="col-6">
+                                            Meus Carros
+                                        </div>
+                                        <div class="col-6 ms-auto text-end">
+                                        <a href="../Car/upsertCar.php?action=I" class="view text-decoration-none text-muted" title="Criar" data-toggle="tooltip"><i class="material-icons">&#xE148;</i>Criar Usuário</a>
+                                        </div>
+                                    </div>
                                 </h3>
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="col-12 border p-3">
-                                <table id="carTable" class="table table-striped table-bordered" style="width:100%">
+                            <div class="col-12 border p-3" style="border-radius: 1rem;">
+                                <table id="carTable" class="table table-striped table-bordered" style="width:100%; border-radius: 1rem;">
                                     <thead>
                                         <tr>
                                             <th>Modelo</th>
