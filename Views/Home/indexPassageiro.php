@@ -24,7 +24,6 @@
             <div class="d-flex flex-column justify-content-center">
                 <div class="card mt-4 bg-secondary">
                     <div class="card-body">
-                        <h3><?= $_SESSION["typeUser"]?></h3>
                         <form action="#" method="post">
                             <div class="d-flex flex-row justify-content-evenly form-group">
                                 <div class="mx-2">
@@ -41,26 +40,27 @@
                     </div>
                 </div>
                 <div class="d-flex flex-column mt-5">
-                    <div class="row row-cols-1 row-cols-md-2">
+                    <div class="row">
                         <div class="col">
-                            <div class="card my-2 ms-1 border border-5 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                            <div class="card my-2 ms-1 shadow">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Reservar sua vaga</h5>
+                                    <p class="card-text">Faça a sua reserva aqui!.</p>
+                                    <a href="../Trip/index.php" class="btn btn-primary rounded-pill">Reserva</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                        <div class="card my-2 ms-1 shadow-sm">
+                        <div class="card my-2 ms-1 shadow">
                                 <div class="card-body text-center">
                                 <h5 class="card-title ">Editar Informaçoes</h5>
                                     <p class="card-text">Visualize suas informações de perfil.</p>
-                                    <a href="../User/Edit.php" class="btn btn-primary">Visualizar</a>
+                                    <a href="../User/Edit.php" class="btn btn-primary rounded-pill">Visualizar</a>
                                 </div>
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                            <div class="card my-2 ms-1 shadow">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Cidade A x Cidade B</h5>
                                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="card my-2 ms-1 border border-5 shadow-sm">
+                            <div class="card my-2 ms-1 shadow">
                                 <div class="card-body">
                                     <h5 class="card-title text-center">Cidade A x Cidade B</h5>
                                     <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>

@@ -44,6 +44,36 @@ export default {
             return res.status(500).send({ error: error.message })
         }
     },
+    async findAllAddresses(req, res) {
+        try {
+            const { Id } = req.params;
+            const ends = await prisma.endereco.findMany(
+                {
+                    where: {
+                        viagem:{none:{enderecoId: undefined}}
+
+                    },
+                    include: {
+                        cidade: {
+                            select: {
+                                Nome: true,
+                                estado: {
+                                    select: {
+                                        Nome: true,
+                                        Uf: true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            );
+            ends ? res.json(ends) : res.status(404).send({ error: "Não existem endereços cadastrados no sistema" });
+        } catch (error) {
+            return res.status(500).send({ error: error.message })
+        }
+    }
+    ,
     async findAddress(req, res) {
         try {
             const { Id } = req.params;
@@ -53,12 +83,13 @@ export default {
                 },
                 include: {
                     cidade: {
-                        select:{
+                        select: {
                             Nome: true,
                             estado: {
                                 select: {
                                     Nome: true,
-                                    Uf: true
+                                    Uf: true,
+                                    Id: true
                                 }
                             }
                         }
@@ -72,7 +103,7 @@ export default {
 
     },
     async updateAddress(req, res) {
-        const { Id,Logradouro, PontoReferencia, cidadeId, Numero } = req.body;
+        const { Id, Logradouro, PontoReferencia, cidadeId, Numero } = req.body;
 
         try {
             let end = await prisma.endereco.findUnique({ where: { Id } })

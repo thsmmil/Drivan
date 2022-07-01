@@ -49,16 +49,16 @@ export default {
         user ? res.json(user) : res.status(404).send({ error: "Motorista não encontrado" })
     },
     async updateDriver(req, res) {
-        const { CPF ,Nome, Email, Telefone, Senha } = req.body;
+        const { Id ,Nome, Email, Telefone, Senha } = req.body;
 
         try {
-            let user = await prisma.motorista.findUnique({ where: { CPF } })
+            let user = await prisma.motorista.findUnique({ where: { CPF: Id } })
             if (!user)
                 return res.status(404).send({ error: "Motorista não encontrado" })
             const hashedPassword = await bcrypt.hash(Senha, 10);
             if (await bcrypt.compare(Senha, user.Senha)) {
                 user = await prisma.motorista.update({
-                    where: { CPF },
+                    where: { CPF: Id },
                     data: {
                         Nome,
                         Email,
@@ -69,7 +69,7 @@ export default {
             } else {
                 let hashedPassword = await bcrypt.hash(Senha, 10)
                 user = await prisma.motorista.update({
-                    where: { CPF },
+                    where: { CPF: Id },
                     data: {
                         Nome,
                         Email,

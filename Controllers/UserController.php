@@ -1,35 +1,38 @@
 <?php
-define("PASSAGEIRO_ENDPOINT", "http://localhost:3030/passageiro");
-define("MOTORISTA_ENDPOINT", "http://localhost:3030/motorista");
-include('./Models/Passageiro.php');
-include('./Services/APIService.php');
-function criar()
-{
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if ($_POST["user"] == "Passageiro") {
-            $passageiro = new Passageiro();
-            $passageiro->set_cpf($_POST["cpf"]);
-            $passageiro->set_nome($_POST["nome"]);
-            $passageiro->set_email($_POST["email"]);
-            $passageiro->set_telefone($_POST["phone"]);
-            $passageiro->set_senha($_POST["pswd"]);
-            $data = makePost(PASSAGEIRO_ENDPOINT, $passageiro);
-            if($data !== null){
-                return "Usuário criado com sucesso";
-            }else{
-                return "Aconteceu algo de errado" .$data;
-            }
+session_start();
+// 
+// "http://localhost:3030/motorista"
+include('../Services/APIService.php');
+unset($_POST["pwdConfirm"]);
+if (isset($_GET["typeUser"])) {
+    unset($_SESSION["login"]);
+    $typeofUser = $_GET["typeUser"];
+    $_SESSION["typeUser"] = $typeofUser;
+    $userRequest = strtolower($typeofUser);
+    $result = makePost("http://localhost:3030/$userRequest", $_POST);
+    if (!is_null($result)) {
+        $_SESSION["usuario"] = $result;
+        $_SESSION["login"] = $result->CPF;
 
-        }else if($_POST["user"] == "Motorista"){
-            $motorista = new Passageiro();
-            $motorista->set_cpf($_POST["cpf"]);
-            $motorista->set_nome($_POST["nome"]);
-            $motorista->set_email($_POST["email"]);
-            $motorista->set_telefone($_POST["phone"]);
-            $motorista->set_senha($_POST["pswd"]);
-        }
+        header("Location: /Drivan/Views/Home/index$typeofUser.php?teste=Criar", replace: false, response_code: 302);
+        exit;
     }
-}
-//../Home/index$user.php
-?>
+    header("Location: /Drivan/Views/index.php", replace: false, response_code: 302);
+    exit;
+} else if (!isset($_GET["typeUser"])) {
+    $userRequest = strtolower($_SESSION["typeUser"]);
+    
+    $result = makePut("http://localhost:3030/$userRequest", $_POST);
+    if (!is_null($result)) {
+        if (is_null($result->error)) {
+            $_SESSION["usuario"] = $result;
+            header("Location: /Drivan/Views/User/Edit.php?teste=Update", replace: false, response_code: 302);
+            exit;
+        }
+        $_SESSION["errorApi"] = $result;
+    }
+    header("Location: /Drivan/Views/User/Edit.php?teste=erro", replace: false, response_code: 302);
+    exit;
+}  
 
+//../Home/index$user.php

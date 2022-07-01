@@ -49,15 +49,15 @@ export default {
         user ? res.json(user) : res.status(404).send({ error: "Passageiro não encontrado" })
     },
     async updatePassenger(req, res) {
-        const { CPF, Nome, Email, Telefone, Senha } = req.body;
+        const { Id, Nome, Email, Telefone, Senha } = req.body;
 
         try {
-            let user = await prisma.passageiro.findUnique({ where: { CPF } })
+            let user = await prisma.passageiro.findUnique({ where: { CPF: Id } })
             if (!user)
                 return res.status(404).send({ error: "Passageiro não encontrado" });
             if (await bcrypt.compare(Senha, user.Senha)) {
                 user = await prisma.passageiro.update({
-                    where: { CPF },
+                    where: { CPF: Id },
                     data: {
                         Nome,
                         Email,
@@ -68,7 +68,7 @@ export default {
             } else {
                 let hashedPassword = await bcrypt.hash(Senha, 10)
                 user = await prisma.passageiro.update({
-                    where: { CPF },
+                    where: { CPF: Id },
                     data: {
                         Nome,
                         Email,

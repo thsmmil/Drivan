@@ -1,5 +1,4 @@
 <?php session_start();
-echo session_id();
 if(isset($_SESSION["login"])){
     header("Location: /Drivan/Views/Home/index". $_SESSION["typeUser"] .".php", replace: false, response_code: 302);
     exit;

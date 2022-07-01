@@ -1,5 +1,4 @@
 <?php session_start();
-echo session_id();
  ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,27 +43,25 @@ echo session_id();
                     <div class="card py-3 px-4 mx-2 shadow">
                         <div class="card-body text-black">
                             <h5 class="fw-normal mb-3" style="letter-spacing: 1px;"><?php echo "Cadastro $user" ?></h5>
-                            <?= "<form action='../Home/index$user.php' method='POST'>"; ?>
+                             <?= "<form action='../../Controllers/UserController.php?typeUser=$user' method='POST'>"; ?>
                                 <div class="mb-3">
-                                    <input type="hidden" name="user" value= <?php echo "'$user'"; ?>>
-                                    <input type="hidden" name="from" value="RegisterP">
-                                    <input type="text" class="form-control" id="cpf" placeholder="CPF" name="cpf">
+                                    <input type="text" class="form-control" id="cpf" placeholder="CPF" name="CPF">
                                 </div>
                                 <div class="mb-3">
 
-                                    <input type="text" class="form-control" id="nome" placeholder="Nome" name="nome">
+                                    <input type="text" class="form-control" id="nome" placeholder="Nome" name="Nome">
                                 </div>
                                 <div class="mb-3">
 
-                                    <input type="email" class="form-control" id="email" placeholder="E-mail" name="email">
+                                    <input type="email" class="form-control" id="email" placeholder="E-mail" name="Email">
                                 </div>
                                 <div class="mb-3">
 
-                                    <input type="tel" class="form-control" id="phone" placeholder="Telefone" name="phone" maxlength="11">
+                                    <input type="tel" class="form-control" id="phone" placeholder="Telefone" name="Telefone" maxlength="11">
                                 </div>
                                 <div class="mb-3">
 
-                                    <input type="password" class="form-control" id="pwd" placeholder="Senha" name="pswd">
+                                    <input type="password" class="form-control" id="pwd" placeholder="Senha" name="Senha">
                                 </div>
                                 <div class="mb-3">
 

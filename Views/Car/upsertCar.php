@@ -1,8 +1,10 @@
 <?php include('../Shared/layoutHeader.php'); ?>
 <?php
-if(isset($_SESSION["car"])){
+if (isset($_SESSION["car"])) {
     $car = $_SESSION["car"];
 }
+$Year = date('Y');
+    $action = $_GET["action"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,11 +13,8 @@ if(isset($_SESSION["car"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Criar Carro - Drivan</title>
-    <?php
-    $Year = date('Y');
-    $action = $_GET["action"];
-    ?>
 </head>
 
 <body>
@@ -27,21 +26,33 @@ if(isset($_SESSION["car"])){
                         <div class="card-header">
                             <div class="card-title">
                                 <h3 class="card-label">
-                                    <?php
-                                    if ($action == "U") {
-                                        echo "Atualizar Carro"; 
-                                    } else {
-                                        echo "Novo Carro";
-                                    }
-                                    ?>
+                                    <div class="row justify-content-between">
+                                        <div class="col-6">
+                                            <?php
+                                            if ($action == "U") {
+                                                echo "Atualizar Carro";
+                                            } else {
+                                                echo "Novo Carro";
+                                            }
+                                            ?>
+                                        </div>
+                                        <div class="col-6 ms-auto text-end">
+                                            <?php 
+                                            if($action == "U"){
+                                                echo "<a href='../Car/upsertCar.php?action=I' class='view text-decoration-none text-muted' title='Criar' data-toggle='tooltip'><i class='material-icons'>&#xE148;</i>Criar Carro</a>";
+                                            }
+                                            ?>
+
+                                        </div>
+                                    </div>
                                 </h3>
                             </div>
                         </div>
                         <div class="card-body">
                             <div class="col-md-6">
 
-                                    <?php 
-                                    if($action == "U"){
+                                <?php
+                                if ($action == "U") {
                                     echo "<form action='/Drivan/Controllers/CarController.php?action=$action' method='POST'>
                                     <h4>Informações do carro</h4>
                                     <div class='m-3 row'>
@@ -82,13 +93,12 @@ if(isset($_SESSION["car"])){
                                         </div>
                                     </div>
                                     <div class='ms-3'>
-                                        <button type='submit' class='btn btn-primary rounded-pill'>Adicionar</button>
+                                        <button type='submit' class='btn btn-primary rounded-pill'>Atualizar</button>
                                         <a class='btn btn-warning rounded-pill' href='./index.php'>Voltar a Listagem</a>
                                     </div>
                                 </form>";
-                            }
-                            else{
-                                echo "<form action='/Drivan/Controllers/CarController.php?action=$action' method='POST'>
+                                } else {
+                                    echo "<form action='/Drivan/Controllers/CarController.php?action=$action' method='POST'>
                                     <h4>Informações do carro</h4>
                                     <div class='m-3 row'>
                                         <input type='hidden' value='" . $_SESSION["login"] . "' name='CPF'>
@@ -132,8 +142,8 @@ if(isset($_SESSION["car"])){
                                         <a class='btn btn-warning rounded-pill' href='./index.php'>Voltar a Listagem</a>
                                     </div>
                                 </form>";
-                            }
-                                
+                                }
+
                                 ?>
                             </div>
                         </div>

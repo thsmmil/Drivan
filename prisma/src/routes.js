@@ -30,9 +30,12 @@ router.put("/carro", CarroController.updateCar);
 router.delete("/carro/:Id", CarroController.deleteCar);
 
 router.get("/cidades", CidadeController.findAllCities);
+router.get("/estados", CidadeController.findAllStates);
+
 
 router.post("/endereco", EnderecoController.createAddress);
 router.get("/enderecos", EnderecoController.findAllAddress);
+router.get("/enderecos/:Id", EnderecoController.findAllAddresses);
 router.get("/endereco/:Id", EnderecoController.findAddress);
 router.put("/endereco", EnderecoController.updateAddress);
 router.delete("/endereco/:Id", EnderecoController.deleteAddress);

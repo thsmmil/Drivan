@@ -17,6 +17,7 @@ $person = json_decode(curl_exec($ch));
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../wwwroot/js/table.js"></script>
     <style>
         .card {
             border-radius: 1rem;
@@ -30,39 +31,49 @@ $person = json_decode(curl_exec($ch));
             <div class="d-flex flex-column justify-content-center">
                 <div class="d-flex flex-column mt-5">
                     <div class="row">
-                        <div class="col">
-                            <div class="card my-2 ms-1 shadow-sm">
+                        <div class="col-3">
+                            <div class="card my-2 ms-1 shadow">
                                 <div class="card-body text-center">
                                     <h5 class="card-title ">Meus Carros</h5>
                                     <p class="card-text">Visualize os seus carros.</p>
-                                    <a href="../Car/index.php" class="btn btn-primary">Visualizar</a>
+                                    <a href="../Car/index.php" class="btn btn-primary rounded-pill">Visualizar</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card my-2 ms-1 shadow-sm">
+                        <div class="col-3">
+                            <div class="card my-2 ms-1 shadow">
                                 <div class="card-body text-center">
-                                <h5 class="card-title ">Registrar Nova Viagem</h5>
-                                    <p class="card-text">Registre aqui sua nova viagem.</p>
-                                    <a href="../Viagem/index.php" class="btn btn-primary">Adicionar</a>
+                                <h5 class="card-title ">Minhas Viagens</h5>
+                                    <p class="card-text">Visualize aqui as suas viagens.</p>
+                                    <a href="../Trip/index.php" class="btn btn-primary rounded-pill">Visualizar</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card my-2 ms-1 shadow-sm">
+                        <div class="col-3">
+                            <div class="card my-2 ms-1 shadow">
                                 <div class="card-body text-center">
                                 <h5 class="card-title ">Registrar Novo Carro</h5>
                                     <p class="card-text">Adicione aqui o seu carro.</p>
-                                    <a href="../Car/upsertCar.php?action=I" class="btn btn-primary mb-2">Adicionar</a>
+                                    <a href="../Car/upsertCar.php?action=I" class="btn btn-primary rounded-pill">Adicionar</a>
                                     
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
-                            <div class="card my-2 ms-1 border border-5 shadow-sm">
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">Cidade A x Cidade B</h5>
-                                    <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis aspernatur maiores maxime quidem.</p>
+                        <div class="col-3">
+                            <div class="card my-2 ms-1 shadow">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Editar Informaçoes</h5>
+                                    <p class="card-text">Visualize suas informações de perfil.</p>
+                                    <a href="../User/Edit.php" class="btn btn-primary rounded-pill">Visualizar</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="card my-2 ms-1 shadow">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Endereços</h5>
+                                    <p class="card-text">Visualize suas informações associadas aos endereços de viagens.</p>
+                                    <a href="../Address/index.php" class="btn btn-primary rounded-pill">Visualizar</a>
                                 </div>
                             </div>
                         </div>

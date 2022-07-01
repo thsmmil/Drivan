@@ -1,10 +1,6 @@
 <?php include('../Shared/layoutHeader.php'); ?>
 <?php 
-    $ApiEndpoint = "http://localhost:3030/passageiro/1313131313";
-    $ch = curl_init($ApiEndpoint);
-    curl_setopt($ch, CURLOPT_TIMEOUT, 30);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $user = json_decode(curl_exec($ch));
+    $user = $_SESSION["usuario"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,43 +26,44 @@
                                 </h3>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body row">
                             <div class="col-md-6">
-                                <form>
+                                <form action="../../Controllers/UserController.php" method="POST">
                                     <!-- Email
                                     Senha
                                     Nome
                                     Telefone -->
                                     <h5>Alterar informações do usuário</h5>
+                                    
                                     <div class="m-3 row">
                                         <label for="cpf" class="col-sm-4 col-form-label">CPF</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control-plaintext" id="cpf" value="<?="$user->CPF"?>" name="cpf" readonly />
+                                            <input type="text" class="form-control-plaintext" id="Id" value="<?="$user->CPF"?>" name="Id" readonly />
                                         </div>
 
                                     </div>
                                     <div class="m-3 row">
                                         <label for="email" class="col-sm-4 col-form-label">E-mail</label>
                                         <div class="col-sm-8">
-                                            <input type="email" class="form-control" id="email" value="<?= $user->Email ?>" name="email" required>
+                                            <input type="email" class="form-control" id="email" value="<?= $user->Email ?>" name="Email" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="nome" class="col-sm-4 col-form-label">Nome</label>
                                         <div class="col-sm-8">
-                                            <input type="text" class="form-control" id="nome" value="<?= $user->Nome ?>" name="nome" required>
+                                            <input type="text" class="form-control" id="nome" value="<?= $user->Nome ?>" name="Nome" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="phone" class="col-sm-4 col-form-label">Telefone</label>
                                         <div class="col-sm-8">
-                                            <input type="tel" class="form-control" id="phone" value="<?= $user->Telefone ?>" name="phone" required>
+                                            <input type="tel" class="form-control" id="phone" value="<?= $user->Telefone ?>" name="Telefone" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
                                         <label for="pwd" class="col-sm-4 col-form-label">Senha</label>
                                         <div class="col-sm-8">
-                                            <input type="password" class="form-control" id="pwd" name="pwd" required>
+                                            <input type="password" class="form-control" id="pwd" name="Senha" required>
                                         </div>
                                     </div>
                                     <div class="m-3 row">
@@ -76,10 +73,15 @@
                                         </div>
                                     </div>
                                     <div class="ms-3">
-                                        <button type="submit" class="btn btn-primary rounded-pill">Adicionar</button>
-                                        <a class="btn btn-warning rounded-pill" href="./index.php">Voltar a Listagem</a>
+                                        <button type="submit" class="btn btn-primary rounded-pill">Atualizar</button>
+                                        <a class="btn btn-warning rounded-pill" <?= "href='../Home/index" . $_SESSION["typeUser"] . ".php'> "?>Voltar a Listagem</a>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="col-md-6">
+                               <p>
+                                <?= var_dump($_SESSION["usuario"]); ?>
+                               </p> 
                             </div>
                         </div>
                     </div>
